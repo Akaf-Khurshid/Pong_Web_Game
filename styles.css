@@ -1,0 +1,2 @@
+#canvas-wrap { position:relative } /* Make this a positioned parent */
+#overlay     { position:absolute; top:40%; left:40%; text-align: center }
