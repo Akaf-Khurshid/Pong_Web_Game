@@ -149,11 +149,11 @@ function animate(){
     }
     if(ball.x - ball.radius < 0){
         scoreboard.player2scoreup();
-        scoreboard.score2 > 7 ? null : ball.reset();
+        scoreboard.score2 == 7 ? null : ball.reset();
     }
     if(ball.x + ball.radius > canvas.width){
         scoreboard.player1scoreup();
-        scoreboard.score1 > 7 ? null : ball.reset();
+        scoreboard.score1 == 7 ? null : ball.reset();
     }
 }
 
