@@ -81,8 +81,8 @@ class score{
     }
     draw(){
         c.font = '30px Arial';
-        c.fillStyle = 'red';
-        c.textAlign = 'center';
+        c.fillStyle = "white";
+        c.textAlign = "center"; 
         c.fillText(this.score1 +' : '+ this.score2, this.x, this.y);
     }
     player1scoreup(){
@@ -94,20 +94,18 @@ class score{
 }
 
 let angel = Math.atan2(canvas.height/2 - (Math.random() < 0.5 ? (Math.random() * (canvas.height/2-10)) : (Math.random() * ((canvas.height) - canvas.height/2+10)) + (canvas.height/2+10)), canvas.width/2-(Math.random() < 0.5 ? 0 : canvas.width));
-let player1 = new Player(10, canvas.height/2-100, 20, 200, 'blue', {up : 87 , down : 83});
+let player1 = new Player(10, canvas.height/2-100, 20, 200, 'purple', {up : 87 , down : 83});
 let player2 = new Player(canvas.width-30, canvas.height/2-100, 20, 200, 'blue', {up : 73, down : 75});
-let ball = new Ball(canvas.width/2, canvas.height/2, 20, 'green', {x : Math.cos(angel), y : Math.sin(angel)}, 5, angel);
+let ball = new Ball(canvas.width/2, canvas.height/2, 20, 'pink', {x : Math.cos(angel), y : Math.sin(angel)}, 5, angel);
 let scoreboard = new score(canvas.width/2, 50, 0, 0);
 let animation;
 
 function init(){
-    
     angel = Math.atan2(canvas.height/2 - (Math.random() < 0.5 ? (Math.random() * (canvas.height/2-10)) : (Math.random() * ((canvas.height) - canvas.height/2+10)) + (canvas.height/2+10)), canvas.width/2-(Math.random() < 0.5 ? 0 : canvas.width));
-    player1 = new Player(10, canvas.height/2-100, 20, 200, 'blue', {up : 87 , down : 83});
+    player1 = new Player(10, canvas.height/2-100, 20, 200, 'purple', {up : 87 , down : 83});
     player2 = new Player(canvas.width-30, canvas.height/2-100, 20, 200, 'blue', {up : 73, down : 75});
-    ball = new Ball(canvas.width/2, canvas.height/2, 20, 'green', {x : Math.cos(angel), y : Math.sin(angel)}, 5, angel);
+    ball = new Ball(canvas.width/2, canvas.height/2, 20, 'pink', {x : Math.cos(angel), y : Math.sin(angel)}, 5, angel);
     scoreboard = new score(canvas.width/2, 50, 0, 0);
-    // addEventListener('keydown', playermove);
     addEventListener('keydown', function (e) {
         key[e.keyCode] = true;
     });
@@ -117,13 +115,12 @@ function init(){
     animate();
     increasespeed();
     button.style.display = 'none';
-    // para.style.display = 'none';
+    
 }
 
 function gamereset(){
-    button.style = 'text-align: center; font-size: 50px display: block';
-    // para.style = 'text-align: center; font-size: 50px';
-    c.clearRect(0, 0, canvas.width, canvas.height);
+    button.style = 'text-align: center; font-size: 50px; display: block; position:fixed; top:40%; left:37%;';
+    gamedes();
     cancelAnimationFrame(animation)
 }
 
@@ -165,23 +162,20 @@ function increasespeed(){
     setInterval(() => {ball.speedup()} , 500);
 }
 
-// function playermove(e){
-//     player1.move(e.code);
-//     player2.move(e.code);
-// }
-// para.innerHTML = 'First to Seven Win <br> Controls <br> Player 1 UP : \' W \' DOWN \' S \' <br> Player 2 UP : \' I \' Down : \' K \' ';
+function gamedes(){
+    c.font = '50px Calibri';
+    c.drawImage(background, 0, 0, canvas.width,  canvas.height);
+    c.fillStyle = "white";
+    c.textAlign = "center"; 
+    c.fillText('First to Seven Win', canvas.width/2, canvas.height/2);
+    c.fillText('Controls',canvas.width/2, canvas.height/2+50);
+    c.fillText('Player 1 UP : \' W \' DOWN \' S \'', canvas.width/2, canvas.height/2+100);
+    c.fillText('Player 2 UP : \' I \' Down : \' K \'', canvas.width/2, canvas.height/2+150);
+}
+
 button.value = 'Click the Me to Start the Game';
-button.style = 'text-align: center; font-size: 50px; display: block';
-// para.style = 'text-align: center; font-size: 50px; display: block';
+button.style = 'text-align: center; font-size: 50px; display: block; position:fixed; top:40%; left:37%;';
 background.src = 'background.jpg';
 button.onclick = init;
-// button.addEventListener('click', init);
 div.appendChild(button);
-// div.appendChild(para);
-c.font = '50px Calibri';
-c.drawImage(background, 0, 0, canvas.width,  canvas.height);
-c.fillText('First to Seven Win', innerWidth/2 - 100, innerHeight/2);
-c.fillText('Controls', innerWidth/2 - 20, innerHeight/2+50);
-c.fillText('Player 1 UP : \' W \' DOWN \' S \'', innerWidth/2 - 200, innerHeight/2+100);
-c.fillText('Player 2 UP : \' I \' Down : \' K \'', innerWidth/2 - 200, innerHeight/2+150);
-// console.log(MouseEvent.x)
+gamedes();
