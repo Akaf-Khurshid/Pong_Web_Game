@@ -112,8 +112,8 @@ function init(){
     
 }
 
-function gamereset(){
-    gamedes();
+function gamereset(player){
+    gamedes(player);
     cancelAnimationFrame(animation)
 }
 
@@ -128,8 +128,8 @@ function animate(){
     player1.move();
     player2.move();
     scoreboard.draw();
-    scoreboard.score2 > 6 ? gamereset() : null;
-    scoreboard.score1 > 6 ? gamereset() : null;
+    scoreboard.score2 > 6 ? gamereset(2) : null;
+    scoreboard.score1 > 6 ? gamereset(1) : null;
     //For the collsion system https://stackoverflow.com/questions/20885297/collision-detection-in-html5-canvas
     const distX1 = Math.abs(ball.x - player1.x - player1.width/2);
     const distY1 = Math.abs(ball.y - player1.y - player1.height/2);
@@ -155,10 +155,11 @@ function increasespeed(){
     setInterval(() => {ball.speedup()} , 500);
 }
 
-function gamedes(){
+function gamedes(player){
     c.font = '50px Calibri';
     c.fillStyle = "white";
     c.textAlign = "center"; 
+    player ? c.fillText('Player ' + player + ' wins', canvas.width/2, canvas.height/2-100) : null;
     c.fillText('Click the Screen to Start the Game', canvas.width/2, canvas.height/2-50);
     c.fillText('First to Seven Win', canvas.width/2, canvas.height/2);
     c.fillText('Controls',canvas.width/2, canvas.height/2+50);
