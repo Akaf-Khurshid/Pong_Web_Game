@@ -173,7 +173,7 @@ function gamedes(){
 }
 
 button.value = 'Click the Me to Start the Game';
-button.style = 'text-align: center; font-size: 50px; display: block; position:fixed; top:40%; left:37%;';
+button.style = 'text-align: center; font-size: 50px; display: block;';
 background.src = 'background.jpg';
 button.onclick = init;
 div.appendChild(button);
