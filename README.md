@@ -5,4 +5,4 @@ This first to seven wins.
 Controls Player 1 UP : ' W ' DOWN ' S ' Player 2 UP : ' I ' Down : ' K '
 
 ## Live Demo
-https://jurisprudential-nic.000webhostapp.comi
+https://jurisprudential-nic.000webhostapp.com
