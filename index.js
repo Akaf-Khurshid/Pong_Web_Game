@@ -178,4 +178,4 @@ button.style = 'text-align: center; font-size: 50px; display: block; position:fi
 background.src = 'background.jpg';
 button.onclick = init;
 div.appendChild(button);
-gamedes();
+background.onload = gamedes();
