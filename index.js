@@ -1,7 +1,6 @@
 const canvas = document.getElementById("mycanvas");
 const div = document.getElementById('overlay'); //https://stackoverflow.com/questions/5763911/placing-a-div-within-a-canvas
 const button = document.createElement('input');
-// const para = document.createElement('p');
 const c = canvas.getContext('2d');
 const background = document.createElement('img');
 const key = [];
@@ -171,6 +170,7 @@ function gamedes(){
     c.fillText('Controls',canvas.width/2, canvas.height/2+50);
     c.fillText('Player 1 UP : \' W \' DOWN \' S \'', canvas.width/2, canvas.height/2+100);
     c.fillText('Player 2 UP : \' I \' Down : \' K \'', canvas.width/2, canvas.height/2+150);
+    console.log('test');
 }
 
 button.value = 'Click the Me to Start the Game';
