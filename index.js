@@ -11,14 +11,13 @@ button.width = 200;
 button.height = 100;
 
 class Player {
-    constructor(x, y, width, height, color, keys, score){
+    constructor(x, y, width, height, color, keys){
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.color = color;
         this.keys = keys;
-        this.score = score;
     }
     draw(){
         c.beginPath();
