@@ -3,6 +3,7 @@ const div = document.getElementById('overlay'); //https://stackoverflow.com/ques
 const button = document.createElement('input');
 const para = document.createElement('p');
 const c = canvas.getContext('2d');
+const backgroundimg = document.getElementById('backgound');
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 button.type = 'button';
