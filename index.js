@@ -1,7 +1,7 @@
 const canvas = document.getElementById("mycanvas");
 const div = document.getElementById('overlay'); //https://stackoverflow.com/questions/5763911/placing-a-div-within-a-canvas
 const button = document.createElement('input');
-const para = document.createElement('p');
+// const para = document.createElement('p');
 const c = canvas.getContext('2d');
 const background = document.createElement('img');
 const key = [];
@@ -101,27 +101,28 @@ let scoreboard = new score(canvas.width/2, 50, 0, 0);
 let animation;
 
 function init(){
+    
     angel = Math.atan2(canvas.height/2 - (Math.random() < 0.5 ? (Math.random() * (canvas.height/2-10)) : (Math.random() * ((canvas.height) - canvas.height/2+10)) + (canvas.height/2+10)), canvas.width/2-(Math.random() < 0.5 ? 0 : canvas.width));
     player1 = new Player(10, canvas.height/2-100, 20, 200, 'blue', {up : 87 , down : 83});
     player2 = new Player(canvas.width-30, canvas.height/2-100, 20, 200, 'blue', {up : 73, down : 75});
     ball = new Ball(canvas.width/2, canvas.height/2, 20, 'green', {x : Math.cos(angel), y : Math.sin(angel)}, 5, angel);
     scoreboard = new score(canvas.width/2, 50, 0, 0);
     // addEventListener('keydown', playermove);
-    document.body.addEventListener("keydown", function (e) {
+    addEventListener('keydown', function (e) {
         key[e.keyCode] = true;
     });
-    document.body.addEventListener("keyup", function (e) {
+    addEventListener('keyup', function (e) {
         key[e.keyCode] = false;
     });
     animate();
     increasespeed();
     button.style.display = 'none';
-    para.style.display = 'none';
+    // para.style.display = 'none';
 }
 
 function gamereset(){
-    button.style = 'text-align: center; font-size: 50px';
-    para.style = 'text-align: center; font-size: 50px';
+    button.style = 'text-align: center; font-size: 50px display: block';
+    // para.style = 'text-align: center; font-size: 50px';
     c.clearRect(0, 0, canvas.width, canvas.height);
     cancelAnimationFrame(animation)
 }
@@ -168,11 +169,19 @@ function increasespeed(){
 //     player1.move(e.code);
 //     player2.move(e.code);
 // }
-para.innerHTML = 'First to Seven Win <br> Controls <br> Player 1 UP : \' W \' DOWN \' S \' <br> Player 2 UP : \' I \' Down : \' K \' ';
+// para.innerHTML = 'First to Seven Win <br> Controls <br> Player 1 UP : \' W \' DOWN \' S \' <br> Player 2 UP : \' I \' Down : \' K \' ';
 button.value = 'Click the Me to Start the Game';
-button.style = 'text-align: center; font-size: 50px';
-para.style = 'text-align: center; font-size: 50px';
+button.style = 'text-align: center; font-size: 50px; display: block';
+// para.style = 'text-align: center; font-size: 50px; display: block';
 background.src = 'background.jpg';
-button.addEventListener('click', init());
+button.onclick = init;
+// button.addEventListener('click', init);
 div.appendChild(button);
-div.appendChild(para);
+// div.appendChild(para);
+c.font = '50px Calibri';
+c.drawImage(background, 0, 0, canvas.width,  canvas.height);
+c.fillText('First to Seven Win', innerWidth/2 - 100, innerHeight/2);
+c.fillText('Controls', innerWidth/2 - 20, innerHeight/2+50);
+c.fillText('Player 1 UP : \' W \' DOWN \' S \'', innerWidth/2 - 200, innerHeight/2+100);
+c.fillText('Player 2 UP : \' I \' Down : \' K \'', innerWidth/2 - 200, innerHeight/2+150);
+// console.log(MouseEvent.x)
