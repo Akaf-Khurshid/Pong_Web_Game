@@ -3,7 +3,7 @@ const div = document.getElementById('overlay'); //https://stackoverflow.com/ques
 const button = document.createElement('input');
 const para = document.createElement('p');
 const c = canvas.getContext('2d');
-const backgroundimg = document.getElementById('backgound');
+const background = document.createElement('img');
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 button.type = 'button';
@@ -123,6 +123,7 @@ function gamereset(){
 function animate(){
     animation = requestAnimationFrame(animate);
     c.clearRect(0, 0, canvas.width, canvas.height);
+    c.drawImage(background, 0, 0);
     ball.draw();
     ball.update();
     player1.draw();
@@ -159,10 +160,13 @@ function playermove(e){
     player1.move(e.code);
     player2.move(e.code);
 }
-para.innerHTML = 'First to Seven Win <br> Controls <br> Player 1 UP : \' W \' DOWN \' S \' <br> Player 2 UP : \' I \' Down : \' K \'';
+para.innerHTML = 'First to Seven Win <br> Controls <br> Player 1 UP : \' W \' DOWN \' S \' <br> Player 2 UP : \' I \' Down : \' K \' ';
 button.value = 'Click the Me to Start the Game';
 button.style = 'text-align: center; font-size: 50px';
 para.style = 'text-align: center; font-size: 50px';
+background.src = 'background.jpg';
+background.width = innerWidth;
+background.height = innerHeight;
 button.addEventListener('click', init);
 div.appendChild(button);
 div.appendChild(para);
