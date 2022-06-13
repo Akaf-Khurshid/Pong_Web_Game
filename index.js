@@ -4,7 +4,7 @@ const button = document.createElement('input');
 const para = document.createElement('p');
 const c = canvas.getContext('2d');
 const background = document.createElement('img');
-const keys = [];
+const key = [];
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 button.type = 'button';
@@ -25,8 +25,8 @@ class Player {
         c.fillStyle = this.color;
         c.fillRect(this.x, this.y, this.width, this.height);
     }
-    move(key){
-        this.y = key[87] ? this.y < 20 ? this.y: this.y - 20 : this.keys.down == key ? this.y > canvas.height - 220 ? this.y : this.y + 20 : this.y;
+    move(){
+        this.y = key[this.keys.up] ? this.y < 20 ? this.y : this.y - 20 : key[this.keys.down] ? this.y > canvas.height - 220 ? this.y : this.y + 20 : this.y;
     }
     update(){
         ball.velocity = ball.x - this.x;
@@ -95,18 +95,24 @@ class score{
 
 let angel = Math.atan2(canvas.height/2 - (Math.random() < 0.5 ? (Math.random() * (canvas.height/2-10)) : (Math.random() * ((canvas.height) - canvas.height/2+10)) + (canvas.height/2+10)), canvas.width/2-(Math.random() < 0.5 ? 0 : canvas.width));
 let player1 = new Player(10, canvas.height/2-100, 20, 200, 'blue', {up : 87 , down : 83});
-let player2 = new Player(canvas.width-30, canvas.height/2-100, 20, 200, 'blue', {up : 73, down:83});
+let player2 = new Player(canvas.width-30, canvas.height/2-100, 20, 200, 'blue', {up : 73, down : 75});
 let ball = new Ball(canvas.width/2, canvas.height/2, 20, 'green', {x : Math.cos(angel), y : Math.sin(angel)}, 5, angel);
 let scoreboard = new score(canvas.width/2, 50, 0, 0);
 let animation;
 
 function init(){
     angel = Math.atan2(canvas.height/2 - (Math.random() < 0.5 ? (Math.random() * (canvas.height/2-10)) : (Math.random() * ((canvas.height) - canvas.height/2+10)) + (canvas.height/2+10)), canvas.width/2-(Math.random() < 0.5 ? 0 : canvas.width));
-    player1 = new Player(10, canvas.height/2-100, 20, 200, 'blue', {up : 'KeyW', down : 'KeyS'});
-    player2 = new Player(canvas.width-30, canvas.height/2-100, 20, 200, 'blue', {up : 'KeyI', down:'KeyK'});
+    player1 = new Player(10, canvas.height/2-100, 20, 200, 'blue', {up : 87 , down : 83});
+    player2 = new Player(canvas.width-30, canvas.height/2-100, 20, 200, 'blue', {up : 73, down : 75});
     ball = new Ball(canvas.width/2, canvas.height/2, 20, 'green', {x : Math.cos(angel), y : Math.sin(angel)}, 5, angel);
     scoreboard = new score(canvas.width/2, 50, 0, 0);
     // addEventListener('keydown', playermove);
+    document.body.addEventListener("keydown", function (e) {
+        key[e.keyCode] = true;
+    });
+    document.body.addEventListener("keyup", function (e) {
+        key[e.keyCode] = false;
+    });
     animate();
     increasespeed();
     button.style.display = 'none';
@@ -128,6 +134,8 @@ function animate(){
     ball.update();
     player1.draw();
     player2.draw(); 
+    player1.move();
+    player2.move();
     scoreboard.draw();
     scoreboard.score1 > 6 ? gamereset() : null;
     scoreboard.score2 > 6 ? gamereset() : null;
@@ -150,8 +158,6 @@ function animate(){
         scoreboard.player1scoreup();
         ball.reset();
     }
-    player1.move();
-    player2.move();
 }
 
 function increasespeed(){
@@ -167,13 +173,6 @@ button.value = 'Click the Me to Start the Game';
 button.style = 'text-align: center; font-size: 50px';
 para.style = 'text-align: center; font-size: 50px';
 background.src = 'background.jpg';
-button.addEventListener('click', init);
+button.addEventListener('click', init());
 div.appendChild(button);
 div.appendChild(para);
-
-document.body.addEventListener("keydown", function (e) {
-    keys[e.keyCode] = true;
-});
-document.body.addEventListener("keyup", function (e) {
-    keys[e.keyCode] = false;
-});
