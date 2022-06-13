@@ -94,7 +94,7 @@ class score{
 }
 
 let angel = Math.atan2(canvas.height/2 - (Math.random() < 0.5 ? (Math.random() * (canvas.height/2-10)) : (Math.random() * ((canvas.height) - canvas.height/2+10)) + (canvas.height/2+10)), canvas.width/2-(Math.random() < 0.5 ? 0 : canvas.width));
-let player1 = new Player(0, canvas.height/2-100, 20, 200, 'blue', {up : 'KeyW', down : 'KeyS'});
+let player1 = new Player(10, canvas.height/2-100, 20, 200, 'blue', {up : 'KeyW', down : 'KeyS'});
 let player2 = new Player(canvas.width-30, canvas.height/2-100, 20, 200, 'blue', {up : 'KeyI', down:'KeyK'});
 let ball = new Ball(canvas.width/2, canvas.height/2, 20, 'green', {x : Math.cos(angel), y : Math.sin(angel)}, 5, angel);
 let scoreboard = new score(canvas.width/2, 50, 0, 0);
@@ -102,7 +102,7 @@ let animation;
 
 function init(){
     angel = Math.atan2(canvas.height/2 - (Math.random() < 0.5 ? (Math.random() * (canvas.height/2-10)) : (Math.random() * ((canvas.height) - canvas.height/2+10)) + (canvas.height/2+10)), canvas.width/2-(Math.random() < 0.5 ? 0 : canvas.width));
-    player1 = new Player(0, canvas.height/2-100, 20, 200, 'blue', {up : 'KeyW', down : 'KeyS'});
+    player1 = new Player(10, canvas.height/2-100, 20, 200, 'blue', {up : 'KeyW', down : 'KeyS'});
     player2 = new Player(canvas.width-30, canvas.height/2-100, 20, 200, 'blue', {up : 'KeyI', down:'KeyK'});
     ball = new Ball(canvas.width/2, canvas.height/2, 20, 'green', {x : Math.cos(angel), y : Math.sin(angel)}, 5, angel);
     scoreboard = new score(canvas.width/2, 50, 0, 0);
@@ -123,7 +123,7 @@ function gamereset(){
 function animate(){
     animation = requestAnimationFrame(animate);
     c.clearRect(0, 0, canvas.width, canvas.height);
-    c.drawImage(background, 0, 0);
+    c.drawImage(background, 0, 0, canvas.width,  canvas.height);
     ball.draw();
     ball.update();
     player1.draw();
@@ -165,8 +165,6 @@ button.value = 'Click the Me to Start the Game';
 button.style = 'text-align: center; font-size: 50px';
 para.style = 'text-align: center; font-size: 50px';
 background.src = 'background.jpg';
-background.width = innerWidth;
-background.height = innerHeight;
 button.addEventListener('click', init);
 div.appendChild(button);
 div.appendChild(para);
