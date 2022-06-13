@@ -163,7 +163,6 @@ function increasespeed(){
 
 function gamedes(){
     c.font = '50px Calibri';
-    c.drawImage(background, 0, 0, canvas.width,  canvas.height);
     c.fillStyle = "white";
     c.textAlign = "center"; 
     c.fillText('First to Seven Win', canvas.width/2, canvas.height/2);
@@ -178,4 +177,7 @@ button.style = 'text-align: center; font-size: 50px; display: block; position:fi
 background.src = 'background.jpg';
 button.onclick = init;
 div.appendChild(button);
-background.onload = gamedes();
+background.onload = () => {
+    c.drawImage(background, 0, 0, canvas.width,  canvas.height);
+    gamedes();
+}
