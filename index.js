@@ -1,14 +1,9 @@
 const canvas = document.getElementById("mycanvas");
-const div = document.getElementById('overlay'); //https://stackoverflow.com/questions/5763911/placing-a-div-within-a-canvas
-const button = document.createElement('input');
 const c = canvas.getContext('2d');
 const background = document.createElement('img');
 const key = [];
 canvas.width = innerWidth;
 canvas.height = innerHeight;
-button.type = 'button';
-button.width = 200;
-button.height = 100;
 
 class Player {
     constructor(x, y, width, height, color, keys){
@@ -111,14 +106,13 @@ function init(){
     addEventListener('keyup', function (e) {
         key[e.keyCode] = false;
     });
+    canvas.onclick = null;
     animate();
     increasespeed();
-    button.style.display = 'none';
     
 }
 
 function gamereset(){
-    button.style = 'text-align: center; font-size: 50px; display: block;';
     gamedes();
     cancelAnimationFrame(animation)
 }
@@ -165,18 +159,16 @@ function gamedes(){
     c.font = '50px Calibri';
     c.fillStyle = "white";
     c.textAlign = "center"; 
+    c.fillText('Click the Screen to Start the Game', canvas.width/2, canvas.height/2-50);
     c.fillText('First to Seven Win', canvas.width/2, canvas.height/2);
     c.fillText('Controls',canvas.width/2, canvas.height/2+50);
     c.fillText('Player 1 UP : \' W \' DOWN \' S \'', canvas.width/2, canvas.height/2+100);
     c.fillText('Player 2 UP : \' I \' Down : \' K \'', canvas.width/2, canvas.height/2+150);
     console.log('test');
+    canvas.onclick = init;
 }
 
-button.value = 'Click the Me to Start the Game';
-button.style = 'text-align: center; font-size: 50px; display: block;';
 background.src = 'background.jpg';
-button.onclick = init;
-div.appendChild(button);
 background.onload = () => {
     c.drawImage(background, 0, 0, canvas.width,  canvas.height);
     gamedes();
