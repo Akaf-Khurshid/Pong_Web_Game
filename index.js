@@ -134,8 +134,8 @@ function animate(){
     player1.move();
     player2.move();
     scoreboard.draw();
-    scoreboard.score2 > 0 ? gamereset() : null;
-    scoreboard.score1 > 0 ? gamereset() : null;
+    scoreboard.score2 > 6 ? gamereset() : null;
+    scoreboard.score1 > 6 ? gamereset() : null;
     //For the collsion system https://stackoverflow.com/questions/20885297/collision-detection-in-html5-canvas
     const distX1 = Math.abs(ball.x - player1.x - player1.width/2);
     const distY1 = Math.abs(ball.y - player1.y - player1.height/2);
