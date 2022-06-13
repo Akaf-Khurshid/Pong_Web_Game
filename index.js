@@ -25,7 +25,7 @@ class Player {
         c.fillRect(this.x, this.y, this.width, this.height);
     }
     move(){
-        this.y = key[this.keys.up] ? this.y < 20 ? this.y : this.y - 20 : key[this.keys.down] ? this.y > canvas.height - 220 ? this.y : this.y + 20 : this.y;
+        this.y = key[this.keys.up] ? this.y < 15 ? this.y : this.y - 15 : key[this.keys.down] ? this.y > canvas.height - 215 ? this.y : this.y + 15 : this.y;
     }
     update(){
         ball.velocity = ball.x - this.x;
@@ -118,7 +118,7 @@ function init(){
 }
 
 function gamereset(){
-    button.style = 'text-align: center; font-size: 50px; display: block; position:fixed; top:40%; left:37%;';
+    button.style = 'text-align: center; font-size: 50px; display: block;';
     gamedes();
     cancelAnimationFrame(animation)
 }
@@ -134,8 +134,8 @@ function animate(){
     player1.move();
     player2.move();
     scoreboard.draw();
-    scoreboard.score1 > 6 ? gamereset() : null;
-    scoreboard.score2 > 6 ? gamereset() : null;
+    scoreboard.score2 > 0 ? gamereset() : null;
+    scoreboard.score1 > 0 ? gamereset() : null;
     //For the collsion system https://stackoverflow.com/questions/20885297/collision-detection-in-html5-canvas
     const distX1 = Math.abs(ball.x - player1.x - player1.width/2);
     const distY1 = Math.abs(ball.y - player1.y - player1.height/2);
@@ -149,11 +149,11 @@ function animate(){
     }
     if(ball.x - ball.radius < 0){
         scoreboard.player2scoreup();
-        ball.reset();
+        scoreboard.score2 > 0 ? null : ball.reset();
     }
     if(ball.x + ball.radius > canvas.width){
         scoreboard.player1scoreup();
-        ball.reset();
+        scoreboard.score1 > 0 ? null : ball.reset();
     }
 }
 
