@@ -26,7 +26,7 @@ class Player {
         c.fillRect(this.x, this.y, this.width, this.height);
     }
     move(){
-        this.y = key[this.keys.up] ? this.y < 15 ? this.y : this.y - 15 : key[this.keys.down] ? this.y > canvas.height - 215 ? this.y : this.y + 15 : this.y;
+        this.y = key[this.keys.up] ? this.y < 10 ? this.y : this.y - 10 : key[this.keys.down] ? this.y > canvas.height - 210 ? this.y : this.y + 10 : this.y;
     }
     update(){
         ball.velocity = ball.x - this.x;
