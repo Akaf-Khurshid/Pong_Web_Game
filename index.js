@@ -2,6 +2,12 @@ const canvas = document.getElementById("mycanvas");
 const c = canvas.getContext('2d');
 const background = document.createElement('img');
 const key = [];
+const sfx = {
+    scoreup: new Howl({
+       src: [
+          'score.mp3',
+       ]
+    })}
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
@@ -55,7 +61,8 @@ class Ball {
     }
     hit(){
         this.velocity.x = -this.velocity.x;
-        console.log({x : ball.x, y: ball.y});
+        this.x = this.x < canvas.width/2 ? 50 : canvas.width - 70;
+        // console.log({x : ball.x, y: ball.y});
     }
     reset(){
         this.angel = Math.atan2(canvas.height/2 - (Math.random() < 0.5 ? (Math.random() * (canvas.height/2-10)) : (Math.random() * ((canvas.height) - canvas.height/2+10)) + (canvas.height/2+10)), canvas.width/2 - (Math.random() < 0.5 ? 0 : canvas.width));
@@ -142,10 +149,12 @@ function animate(){
         ball.hit();
     }
     if(ball.x - ball.radius < 0){
+        sfx.scoreup.play();
         scoreboard.player2scoreup();
         scoreboard.score2 == 7 ? null : ball.reset();
     }
     if(ball.x + ball.radius > canvas.width){
+        sfx.scoreup.play();
         scoreboard.player1scoreup();
         scoreboard.score1 == 7 ? null : ball.reset();
     }
