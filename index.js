@@ -35,14 +35,14 @@ class Player {
 }
 
 class Ball {
-    constructor(x, y, radius, color, velocity, speed, angel){
+    constructor(x, y, radius, color, velocity, speed, angle){
         this.x = x;
         this.y = y;
         this.radius = radius;
         this.color = color;
         this.velocity = velocity;
         this.speed = speed;
-        this.angel = angel;
+        this.angle = angle;
     }
     draw(){
         c.beginPath();
@@ -65,10 +65,10 @@ class Ball {
         // console.log({x : ball.x, y: ball.y});
     }
     reset(){
-        this.angel = Math.atan2(canvas.height/2 - (Math.random() < 0.5 ? (Math.random() * (canvas.height/2-10)) : (Math.random() * ((canvas.height) - canvas.height/2+10)) + (canvas.height/2+10)), canvas.width/2 - (Math.random() < 0.5 ? 0 : canvas.width));
+        this.angle = Math.atan2(canvas.height/2 - (Math.random() < 0.5 ? (Math.random() * (canvas.height/2-10)) : (Math.random() * ((canvas.height) - canvas.height/2+10)) + (canvas.height/2+10)), canvas.width/2 - (Math.random() < 0.5 ? 0 : canvas.width));
         this.x = canvas.width/2;
         this.y = canvas.height/2;
-        this.velocity = {x : Math.cos(this.angel), y : Math.sin(this.angel)};
+        this.velocity = {x : Math.cos(this.angle), y : Math.sin(this.angle)};
         this.speed = 5;
     }
 }
@@ -94,18 +94,18 @@ class score{
     }
 }
 
-let angel = Math.atan2(canvas.height/2 - (Math.random() < 0.5 ? (Math.random() * (canvas.height/2-10)) : (Math.random() * ((canvas.height) - canvas.height/2+10)) + (canvas.height/2+10)), canvas.width/2-(Math.random() < 0.5 ? 0 : canvas.width));
+let angle = Math.atan2(canvas.height/2 - (Math.random() < 0.5 ? (Math.random() * (canvas.height/2-10)) : (Math.random() * ((canvas.height) - canvas.height/2+10)) + (canvas.height/2+10)), canvas.width/2-(Math.random() < 0.5 ? 0 : canvas.width));
 let player1 = new Player(10, canvas.height/2-100, 20, 200, 'purple', {up : 87 , down : 83});
 let player2 = new Player(canvas.width-30, canvas.height/2-100, 20, 200, 'blue', {up : 73, down : 75});
-let ball = new Ball(canvas.width/2, canvas.height/2, 20, 'pink', {x : Math.cos(angel), y : Math.sin(angel)}, 5, angel);
+let ball = new Ball(canvas.width/2, canvas.height/2, 20, 'pink', {x : Math.cos(angle), y : Math.sin(angle)}, 5, angle);
 let scoreboard = new score(canvas.width/2, 50, 0, 0);
 let animation;
 
 function init(){
-    angel = Math.atan2(canvas.height/2 - (Math.random() < 0.5 ? (Math.random() * (canvas.height/2-10)) : (Math.random() * ((canvas.height) - canvas.height/2+10)) + (canvas.height/2+10)), canvas.width/2-(Math.random() < 0.5 ? 0 : canvas.width));
+    angle = Math.atan2(canvas.height/2 - (Math.random() < 0.5 ? (Math.random() * (canvas.height/2-10)) : (Math.random() * ((canvas.height) - canvas.height/2+10)) + (canvas.height/2+10)), canvas.width/2-(Math.random() < 0.5 ? 0 : canvas.width));
     player1 = new Player(10, canvas.height/2-100, 20, 200, 'purple', {up : 87 , down : 83});
     player2 = new Player(canvas.width-30, canvas.height/2-100, 20, 200, 'blue', {up : 73, down : 75});
-    ball = new Ball(canvas.width/2, canvas.height/2, 20, 'pink', {x : Math.cos(angel), y : Math.sin(angel)}, 5, angel);
+    ball = new Ball(canvas.width/2, canvas.height/2, 20, 'pink', {x : Math.cos(angle), y : Math.sin(angle)}, 5, angle);
     scoreboard = new score(canvas.width/2, 50, 0, 0);
     addEventListener('keydown', function (e) {
         key[e.keyCode] = true;
