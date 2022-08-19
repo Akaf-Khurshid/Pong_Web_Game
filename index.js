@@ -73,7 +73,7 @@ class Ball {
     }
 }
 
-class score{
+class Score{
     constructor(x, y, score1, score2){
         this.x = x;
         this.y = y;
@@ -98,7 +98,7 @@ let angle = Math.atan2(canvas.height/2 - (Math.random() < 0.5 ? (Math.random() *
 let player1 = new Player(10, canvas.height/2-100, 20, 200, 'purple', {up : 87 , down : 83});
 let player2 = new Player(canvas.width-30, canvas.height/2-100, 20, 200, 'blue', {up : 73, down : 75});
 let ball = new Ball(canvas.width/2, canvas.height/2, 20, 'pink', {x : Math.cos(angle), y : Math.sin(angle)}, 5, angle);
-let scoreboard = new score(canvas.width/2, 50, 0, 0);
+let scoreboard = new Score(canvas.width/2, 50, 0, 0);
 let animation;
 
 function init(){
@@ -106,7 +106,7 @@ function init(){
     player1 = new Player(10, canvas.height/2-100, 20, 200, 'purple', {up : 87 , down : 83});
     player2 = new Player(canvas.width-30, canvas.height/2-100, 20, 200, 'blue', {up : 73, down : 75});
     ball = new Ball(canvas.width/2, canvas.height/2, 20, 'pink', {x : Math.cos(angle), y : Math.sin(angle)}, 5, angle);
-    scoreboard = new score(canvas.width/2, 50, 0, 0);
+    scoreboard = new Score(canvas.width/2, 50, 0, 0);
     addEventListener('keydown', function (e) {
         key[e.keyCode] = true;
     });
